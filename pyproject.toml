@@ -1,0 +1,37 @@
+[project]
+name = "medscribe-agent"
+version = "0.1.0"
+description = "Agentic Clinical Documentation & Coding System using MedGemma + HealthChain"
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    # MedGemma / HuggingFace local inference
+    "transformers>=4.50.0",
+    "bitsandbytes>=0.45.0",
+    "accelerate>=0.34.0",
+
+    # scispaCy + entity linking
+    "scispacy>=0.5.4",
+    # en_core_sci_sm installed separately:
+    #   pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.5.4/en_core_sci_sm-0.5.4.tar.gz
+
+    # Prompt loading
+    "pyyaml>=6.0",
+
+    # Demo
+    "streamlit>=1.38.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "jupyter",
+    "ipykernel",
+    "ruff",
+]
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]

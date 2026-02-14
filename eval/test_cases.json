@@ -1,0 +1,72 @@
+[
+  {
+    "note_id": "TC-001",
+    "scenario": "Pneumonia + diabetes + hypertension (inpatient)",
+    "patient_id": "Patient/test-001",
+    "clinical_note": "Patient is a 65-year-old male admitted for community-acquired pneumonia. Past medical history significant for type 2 diabetes mellitus and hypertension. Currently on metformin 1000mg BID and lisinopril 20mg daily. Chest X-ray shows right lower lobe infiltrate. Started on azithromycin 500mg IV. Labs show WBC 14.2, glucose 185 mg/dL, HbA1c 7.8%. Assessment: Community-acquired pneumonia, uncontrolled type 2 diabetes, hypertension.",
+    "ground_truth_codes": ["J18.9", "E11.9", "I10"]
+  },
+  {
+    "note_id": "TC-002",
+    "scenario": "Heart failure + atrial fibrillation (cardiology)",
+    "patient_id": "Patient/test-002",
+    "clinical_note": "72-year-old female presenting to the cardiology clinic with worsening dyspnea on exertion and lower extremity edema. Echocardiogram reveals EF 35% consistent with heart failure. EKG demonstrates atrial fibrillation with rapid ventricular response. Started on metoprolol 25mg twice daily for rate control and furosemide for volume management. BNP elevated at 1450 pg/mL. Assessment: Congestive heart failure with reduced ejection fraction, atrial fibrillation.",
+    "ground_truth_codes": ["I50.9", "I48.91"]
+  },
+  {
+    "note_id": "TC-003",
+    "scenario": "COPD + chest pain + hypertension + hyperlipidemia",
+    "patient_id": "Patient/test-003",
+    "clinical_note": "58-year-old male with a 40 pack-year smoking history presents to the ED with acute chest pain and shortness of breath. Known history of COPD and hypertension. CT scan of the chest shows no pulmonary embolism but hyperinflated lungs consistent with chronic obstructive pulmonary disease. Lipid panel reveals elevated LDL consistent with hyperlipidemia. Troponin negative x2. EKG unremarkable. Started on atorvastatin 40mg and continued on amlodipine 5mg for blood pressure. Assessment: COPD exacerbation, chest pain likely musculoskeletal, hypertension, hyperlipidemia.",
+    "ground_truth_codes": ["J44.1", "R07.9", "I10", "E78.5"]
+  },
+  {
+    "note_id": "TC-004",
+    "scenario": "Sepsis + AKI + UTI + diabetes (critical care)",
+    "patient_id": "Patient/test-004",
+    "clinical_note": "78-year-old female transferred to the ICU from the emergency department with sepsis secondary to urinary tract infection. Urine culture growing E. coli. Creatinine acutely elevated from baseline 0.9 to 3.2 mg/dL consistent with acute kidney injury. Past medical history includes type 2 diabetes managed with insulin. Blood culture obtained, started on piperacillin-tazobactam IV. Lactate 4.2 mmol/L, MAP 58 requiring norepinephrine. Assessment: Sepsis from urinary tract infection, acute kidney injury, diabetes.",
+    "ground_truth_codes": ["A41.9", "N17.9", "N39.0", "E11.9"]
+  },
+  {
+    "note_id": "TC-005",
+    "scenario": "Depression + anxiety + hypothyroidism (behavioral health)",
+    "patient_id": "Patient/test-005",
+    "clinical_note": "45-year-old female presents for follow-up of depression and generalized anxiety. PHQ-9 score 16 indicating moderately severe depression. GAD-7 score 14 indicating moderate anxiety. Also has a history of hypothyroidism on levothyroxine 75mcg daily. TSH within normal range at 2.8 mIU/L. Discussed medication adjustment for depression and anxiety management. Increased sertraline from 50mg to 100mg daily. Assessment: Major depression, recurrent; generalized anxiety disorder; hypothyroidism, well-controlled.",
+    "ground_truth_codes": ["F32.9", "F41.9", "E03.9"]
+  },
+  {
+    "note_id": "TC-006",
+    "scenario": "Anemia + hyperlipidemia (outpatient)",
+    "patient_id": "Patient/test-006",
+    "clinical_note": "62-year-old male seen in outpatient clinic for routine follow-up. Labs reveal hemoglobin 10.2 g/dL and hematocrit 30.1% consistent with anemia. Iron studies pending to determine etiology. Also noted elevated total cholesterol 268 mg/dL and LDL 172 mg/dL indicating hyperlipidemia. Currently not on any lipid-lowering therapy. Started atorvastatin 20mg daily. Referred to gastroenterology for anemia workup. Assessment: Anemia of unspecified etiology, hyperlipidemia.",
+    "ground_truth_codes": ["D64.9", "E78.5"]
+  },
+  {
+    "note_id": "TC-007",
+    "scenario": "UTI + type 1 diabetes + hypertension",
+    "patient_id": "Patient/test-007",
+    "clinical_note": "34-year-old female presents with dysuria, urgency, and frequency for 3 days consistent with urinary tract infection. Urinalysis positive for nitrites and leukocyte esterase. Past medical history significant for type 1 diabetes on insulin pump and hypertension managed with lisinopril 10mg daily. Blood glucose at visit 142 mg/dL, HbA1c 6.9%. Blood pressure 138/88 mmHg. Started on nitrofurantoin 100mg BID for 5 days. Assessment: Urinary tract infection, type 1 diabetes, hypertension.",
+    "ground_truth_codes": ["N39.0", "E10.9", "I10"]
+  },
+  {
+    "note_id": "TC-008",
+    "scenario": "Pneumonia only (single condition precision test)",
+    "patient_id": "Patient/test-008",
+    "clinical_note": "55-year-old previously healthy male presents with 5 days of productive cough, fever to 101.8F, and right-sided pleuritic chest pain. Chest X-ray confirms right lower lobe consolidation. No significant past medical history. No chronic medications. WBC 16.8, procalcitonin 1.2 ng/mL. Started on amoxicillin 875mg/clavulanate BID. Assessment: Community-acquired pneumonia.",
+    "ground_truth_codes": ["J18.9"]
+  },
+  {
+    "note_id": "TC-009",
+    "scenario": "Complex multi-system geriatric (6 conditions)",
+    "patient_id": "Patient/test-009",
+    "clinical_note": "82-year-old male admitted from skilled nursing facility with increasing confusion and functional decline. Known history of type 2 diabetes on metformin 1000mg BID, hypertension on amlodipine 10mg daily, COPD on home oxygen 2L, and congestive heart failure with EF 30%. Labs notable for hemoglobin 9.1 g/dL indicating anemia and TSH 12.4 mIU/L consistent with hypothyroidism. Chest X-ray shows cardiomegaly with small bilateral pleural effusions. EKG shows sinus rhythm. Echocardiogram ordered. Started levothyroxine 25mcg daily. Assessment: Diabetes, hypertension, COPD, heart failure exacerbation, anemia requiring workup, newly diagnosed hypothyroidism.",
+    "ground_truth_codes": ["E11.9", "I10", "J44.1", "I50.9", "D64.9", "E03.9"]
+  },
+  {
+    "note_id": "TC-010",
+    "scenario": "Minimal vague note (stress test for empty/fallback)",
+    "patient_id": "Patient/test-010",
+    "clinical_note": "Patient seen today. Reports feeling generally unwell for the past week. No specific complaints. Vital signs stable. Physical exam unremarkable. Labs pending. Will follow up as needed.",
+    "ground_truth_codes": []
+  }
+]
