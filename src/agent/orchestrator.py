@@ -224,30 +224,21 @@ class MedScribeAgent:
         return any(k in text for k in keywords)
 
     def _merge_resolution(self, llm_result: dict, resolution: dict) -> dict:
-        """Merge resolution results back into the main result."""
+        """Merge resolution results back into the main result.
+
+        Only updates existing diagnoses — does not add new ones from resolution
+        to avoid inflating the diagnosis list with non-diagnostic terms.
+        """
         merged = {**llm_result}
         resolved_items = resolution.get("resolved", [])
 
         for item in resolved_items:
-            # Update existing diagnoses or add new ones
-            found = False
             for dx in merged.get("diagnoses", []):
                 if dx.get("text", "").lower() == item.get("text", "").lower():
                     dx["icd10"] = item.get("code", dx.get("icd10"))
                     dx["confidence"] = item.get("confidence", dx.get("confidence"))
                     dx["resolution_reasoning"] = item.get("reasoning", "")
-                    found = True
                     break
-            if not found:
-                merged.setdefault("diagnoses", []).append(
-                    {
-                        "text": item.get("text", ""),
-                        "icd10": item.get("code", ""),
-                        "confidence": item.get("confidence", "medium"),
-                        "gaps": "",
-                        "resolution_reasoning": item.get("reasoning", ""),
-                    }
-                )
 
         return merged
 

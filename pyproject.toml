@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "Agentic Clinical Documentation & Coding System using MedGemma + HealthChain"
 requires-python = ">=3.10,<3.12"
 dependencies = [
+    # HealthChain framework
+    "healthchain>=0.13.0",
+
     # MedGemma / HuggingFace local inference
     "transformers>=4.50.0",
     "bitsandbytes>=0.45.0",

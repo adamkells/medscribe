@@ -38,19 +38,40 @@ class MedGemmaClientProtocol(Protocol):
 def _parse_json_response(response: str, fallback: dict) -> dict:
     """Extract and parse JSON from model response.
 
-    Handles raw JSON, markdown code blocks, and JSON embedded in text.
+    Handles raw JSON, markdown code blocks, JSON arrays, and JSON embedded in text.
     """
-    # Try direct parse first
+    # Strip markdown code fences if present
+    cleaned = response.strip()
+    cleaned = re.sub(r"^```(?:json)?\s*", "", cleaned)
+    cleaned = re.sub(r"\s*```$", "", cleaned)
+    cleaned = cleaned.strip()
+
+    # Try direct parse
     try:
-        return json.loads(response)
+        parsed = json.loads(cleaned)
+        if isinstance(parsed, dict):
+            return parsed
+        # If model returned an array, wrap it as diagnoses
+        if isinstance(parsed, list):
+            return {"diagnoses": parsed, "procedures": [], "medications": [], "discrepancies": []}
     except (json.JSONDecodeError, TypeError):
         pass
 
-    # Try to extract JSON object from markdown code blocks or mixed text
-    json_match = re.search(r"\{[\s\S]*\}", response)
+    # Try to extract JSON object from mixed text
+    json_match = re.search(r"\{[\s\S]*\}", cleaned)
     if json_match:
         try:
             return json.loads(json_match.group())
+        except json.JSONDecodeError:
+            pass
+
+    # Try to extract JSON array from mixed text
+    array_match = re.search(r"\[[\s\S]*\]", cleaned)
+    if array_match:
+        try:
+            parsed = json.loads(array_match.group())
+            if isinstance(parsed, list):
+                return {"diagnoses": parsed, "procedures": [], "medications": [], "discrepancies": []}
         except json.JSONDecodeError:
             pass
 
@@ -287,7 +308,7 @@ class HFEndpointMedGemmaClient:
         self,
         endpoint_url: str | None = None,
         api_token: str | None = None,
-        max_tokens: int = 1024,
+        max_tokens: int = 512,
     ):
         import requests as _requests
 
